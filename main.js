@@ -2,11 +2,19 @@ let cnv,ctx;
 
 function stiskKlavesyDolu(udalost) {
     console.log(udalost.key);
+    //hrac1
     if (udalost.key == "w") {
         yHrac1 = yHrac1 -4;
     }
     if (udalost.key == "s") {
         yHrac1 = yHrac1 +4;
+    }
+    //hrac2
+    if (udalost.key == "ArrowUp") {
+        yHrac2 = yHrac2 -4;
+    }
+    if (udalost.key == "ArrowDown") {
+        yHrac2 = yHrac2 +4;
     }
 }
 
