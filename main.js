@@ -40,7 +40,7 @@ let xHrac2;
 let yHrac2;
 
 let xKruh = 100;
-let yKruh = 150;
+let yKruh = 200;
 let rKruh = 20;
 let dxKruh = -4;
 let dyKruh = -1;
@@ -73,9 +73,19 @@ function animace() {
     //kruh
     xKruh = xKruh + dxKruh;
     yKruh = yKruh + dyKruh;
-    if (xKruh - rKruh <= 0 || xKruh + rKruh >= cnv.width) {
+    if (xKruh - rKruh <= 0) {
+        //bod pro hrace 2
+        //novy mic
+    }
+    if (xKruh + rKruh >= cnv.width) {
+        //bod pro hrace 1
+        //novy mic
+    }
+    //odrazeni od hrace 1
+    if (xKruh - rKruh <= xHrac1 + SIRKA_HRACE && yKruh >= yHrac1 && yKruh <= yHrac1 + VYSKA_HRACE) {
         dxKruh = -1 * dxKruh;
     }
+    //vodorovne okraje
     if (yKruh - rKruh <= 0 || yKruh + rKruh >= cnv.height) {
         dyKruh = -1 * dyKruh;
     }
