@@ -85,6 +85,10 @@ function animace() {
     if (xKruh - rKruh <= xHrac1 + SIRKA_HRACE && yKruh >= yHrac1 && yKruh <= yHrac1 + VYSKA_HRACE) {
         dxKruh = -1 * dxKruh;
     }
+    //odrazeni od hrace 2
+    if (xKruh + rKruh >= xHrac2 && yKruh >= yHrac2 && yKruh <= yHrac2 + VYSKA_HRACE) {
+        dxKruh = -1 * dxKruh;
+    }
     //vodorovne okraje
     if (yKruh - rKruh <= 0 || yKruh + rKruh >= cnv.height) {
         dyKruh = -1 * dyKruh;
