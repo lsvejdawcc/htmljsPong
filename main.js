@@ -29,6 +29,7 @@ function poNacteni() {
     xHrac2 = cnv.width -10 - SIRKA_HRACE;
     yHrac2 = yHrac1;
 
+    novyMic();
     setInterval(animace, 30);
 }
 
@@ -39,11 +40,18 @@ let yHrac1;
 let xHrac2;
 let yHrac2;
 
-let xKruh = 100;
-let yKruh = 200;
-let rKruh = 20;
-let dxKruh = -4;
-let dyKruh = -1;
+const rKruh = 20;
+let xKruh;
+let yKruh;
+let dxKruh;
+let dyKruh;
+
+function novyMic() {
+  xKruh = cnv.width / 2;
+  yKruh = cnv.height / 2;
+  dxKruh = -4;
+  dyKruh = -1;
+}
 
 function animace() {
     ctx.clearRect(0,0, cnv.width, cnv.height);
@@ -76,10 +84,12 @@ function animace() {
     if (xKruh - rKruh <= 0) {
         //bod pro hrace 2
         //novy mic
+        novyMic();
     }
     if (xKruh + rKruh >= cnv.width) {
         //bod pro hrace 1
         //novy mic
+        novyMic();
     }
     //odrazeni od hrace 1
     if (xKruh - rKruh <= xHrac1 + SIRKA_HRACE && yKruh >= yHrac1 && yKruh <= yHrac1 + VYSKA_HRACE) {
