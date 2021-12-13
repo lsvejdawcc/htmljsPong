@@ -51,7 +51,7 @@ function poNacteni() {
     xHrac2 = cnv.width -10 - SIRKA_HRACE;
     yHrac2 = yHrac1;
 
-    novyMic();
+    novyMic();  //pouziji se defaultni hodnoty parametru 0,0
     setInterval(animace, 30);
 }
 
@@ -70,7 +70,12 @@ let yKruh;
 let dxKruh;
 let dyKruh;
 
-function novyMic() {
+function novyMic(bodHrac1 = 0, bodHrac2 = 0) {
+  hrac1body = hrac1body + bodHrac1;  
+  hrac2body = hrac2body + bodHrac2;
+  document.getElementById("skore").innerHTML =
+    hrac1body + ":" + hrac2body;
+  
   xKruh = cnv.width / 2;
   yKruh = cnv.height / 2;
   dxKruh = -4;
@@ -118,16 +123,10 @@ function animace() {
     xKruh = xKruh + dxKruh;
     yKruh = yKruh + dyKruh;
     if (xKruh - rKruh <= 0) {
-        //bod pro hrace 2
-        hrac2body = hrac2body +1;
-        //novy mic
-        novyMic();
+        novyMic(0,1);
     }
     if (xKruh + rKruh >= cnv.width) {
-        //bod pro hrace 1
-        hrac1body = hrac1body +1;
-        //novy mic
-        novyMic();
+        novyMic(1,0);
     }
     //odrazeni od hrace 1
     if (xKruh - rKruh <= xHrac1 + SIRKA_HRACE && yKruh >= yHrac1 && yKruh <= yHrac1 + VYSKA_HRACE) {
@@ -147,8 +146,8 @@ function animace() {
     ctx.fill();
 
     //skore
-    ctx.font = "30px Verdana";
-    ctx.fillStyle = "white";
-    ctx.fillText(hrac1body, cnv.width / 4, 35);
-    ctx.fillText(hrac2body, cnv.width * 3 / 4, 35);
+    // ctx.font = "30px Verdana";
+    // ctx.fillStyle = "white";
+    // ctx.fillText(hrac1body, cnv.width / 4, 35);
+    // ctx.fillText(hrac2body, cnv.width * 3 / 4, 35);
 }
