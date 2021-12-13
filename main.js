@@ -1,20 +1,41 @@
 let cnv,ctx;
 
-function stiskKlavesyDolu(udalost) {
-    console.log(udalost.key);
+let hrac1nahoru = false;
+let hrac1dolu = false;
+let hrac2nahoru = false;
+let hrac2dolu = false;
+
+function stiskKlavesy(udalost) {
     //hrac1
     if (udalost.key == "w") {
-        yHrac1 = yHrac1 -4;
+        hrac1nahoru = true;
     }
     if (udalost.key == "s") {
-        yHrac1 = yHrac1 +4;
+        hrac1dolu = true;
     }
     //hrac2
     if (udalost.key == "ArrowUp") {
-        yHrac2 = yHrac2 -4;
+        hrac2nahoru = true;
     }
     if (udalost.key == "ArrowDown") {
-        yHrac2 = yHrac2 +4;
+        hrac2dolu = true;
+    }
+}
+
+function uvolneniKlavesy(udalost) {
+    //hrac1
+    if (udalost.key == "w") {
+        hrac1nahoru = false;
+    }
+    if (udalost.key == "s") {
+        hrac1dolu = false;
+    }
+    //hrac2
+    if (udalost.key == "ArrowUp") {
+        hrac2nahoru = false;
+    }
+    if (udalost.key == "ArrowDown") {
+        hrac2dolu = false;
     }
 }
 
@@ -22,7 +43,8 @@ function poNacteni() {
     cnv = document.getElementById("platno");
     ctx = cnv.getContext("2d");
 
-    document.addEventListener("keydown", stiskKlavesyDolu);
+    document.addEventListener("keydown", stiskKlavesy);
+    document.addEventListener("keyup", uvolneniKlavesy);
 
     xHrac1 = 10;
     yHrac1 = cnv.height / 2;
@@ -67,12 +89,24 @@ function animace() {
     ctx.setLineDash([]); //plna cara
 
     //hrac1
+    if (hrac1nahoru) {
+        yHrac1 = yHrac1 -3;
+    }
+    if (hrac1dolu) {
+        yHrac1 = yHrac1 +3;
+    }
     ctx.beginPath();
     ctx.fillStyle = "white";
     ctx.rect(xHrac1,yHrac1, SIRKA_HRACE,VYSKA_HRACE);
     ctx.fill();
 
     //hrac2
+    if (hrac2nahoru) {
+        yHrac2 = yHrac2 -3;
+    }
+    if (hrac2dolu) {
+        yHrac2 = yHrac2 +3;
+    }
     ctx.beginPath();
     ctx.fillStyle = "white";
     ctx.rect(xHrac2,yHrac2, SIRKA_HRACE,VYSKA_HRACE);
