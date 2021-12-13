@@ -78,8 +78,14 @@ function novyMic(bodHrac1 = 0, bodHrac2 = 0) {
   
   xKruh = cnv.width / 2;
   yKruh = cnv.height / 2;
-  dxKruh = -4;
-  dyKruh = -1;
+  //nahodna vodorovna rychlost, ale vetsi nez 2 
+  do {
+    dxKruh = Math.random() * 16 - 8;
+  } while (Math.abs(dxKruh) < 2);
+  //nahodna svisla rychlost, ale vetsi nez 2 
+  do {
+    dyKruh = Math.random() * 16 - 8;
+  } while (Math.abs(dyKruh) < 2);
 }
 
 function animace() {
