@@ -59,8 +59,10 @@ const SIRKA_HRACE = 10;
 const VYSKA_HRACE = 60;
 let xHrac1;
 let yHrac1;
+let hrac1body = 0;
 let xHrac2;
 let yHrac2;
+let hrac2body = 0;
 
 const rKruh = 20;
 let xKruh;
@@ -117,11 +119,13 @@ function animace() {
     yKruh = yKruh + dyKruh;
     if (xKruh - rKruh <= 0) {
         //bod pro hrace 2
+        hrac2body = hrac2body +1;
         //novy mic
         novyMic();
     }
     if (xKruh + rKruh >= cnv.width) {
         //bod pro hrace 1
+        hrac1body = hrac1body +1;
         //novy mic
         novyMic();
     }
@@ -142,8 +146,9 @@ function animace() {
     ctx.arc(xKruh,yKruh,rKruh,0,2*Math.PI);
     ctx.fill();
 
-    //text
+    //skore
     ctx.font = "30px Verdana";
-    ctx.fillStyle = "green";
-    ctx.fillText("Kasparek!", 10, 280);
+    ctx.fillStyle = "white";
+    ctx.fillText(hrac1body, cnv.width / 4, 35);
+    ctx.fillText(hrac2body, cnv.width * 3 / 4, 35);
 }
